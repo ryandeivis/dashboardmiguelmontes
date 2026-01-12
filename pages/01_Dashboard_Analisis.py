@@ -191,6 +191,42 @@ with col5:
         delta=f"Prom: {df['Reposteados'].mean():,.0f}/video"
     )
 
+# Sección de Promedios por Video
+st.markdown("### 📊 Promedios por Video")
+col_p1, col_p2, col_p3, col_p4 = st.columns(4)
+
+with col_p1:
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem; border-radius: 0.5rem; text-align: center; color: white;">
+        <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">👁️ Prom. Views</p>
+        <h3 style="margin: 0.3rem 0 0 0;">{df['Reproducciones'].mean():,.0f}</h3>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_p2:
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 1rem; border-radius: 0.5rem; text-align: center; color: white;">
+        <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">❤️ Prom. Likes</p>
+        <h3 style="margin: 0.3rem 0 0 0;">{df['Likes'].mean():,.0f}</h3>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_p3:
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 1rem; border-radius: 0.5rem; text-align: center; color: white;">
+        <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">💬 Prom. Comentarios</p>
+        <h3 style="margin: 0.3rem 0 0 0;">{df['Conteo Comentarios'].mean():,.0f}</h3>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_p4:
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); padding: 1rem; border-radius: 0.5rem; text-align: center; color: white;">
+        <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">🔄 Prom. Compartidos</p>
+        <h3 style="margin: 0.3rem 0 0 0;">{df['Compartidos'].mean():,.0f}</h3>
+    </div>
+    """, unsafe_allow_html=True)
+
 st.divider()
 
 # ============================================
@@ -209,9 +245,10 @@ with col1:
     st.markdown(f"""
     <div style="background: #f7fafc; padding: 1.5rem; border-radius: 1rem; text-align: center; border-left: 5px solid {'#38a169' if emoji in ['🟢','🚀'] else '#d69e2e' if emoji == '🟡' else '#e53e3e'};">
         <h1 style="margin: 0;">{emoji}</h1>
-        <h3 style="margin: 0.5rem 0;">Sends per Reach</h3>
-        <h2 style="margin: 0; color: #1a365d;">{sends_avg:.2f}%</h2>
-        <p style="margin: 0.5rem 0 0 0; color: #718096;">{estado}</p>
+        <h3 style="margin: 0.5rem 0; color: #1a365d; font-weight: 700;">📤 Sends per Reach</h3>
+        <h2 style="margin: 0; color: #2d3748;">{sends_avg:.2f}%</h2>
+        <p style="margin: 0.5rem 0 0 0; color: #4a5568; font-weight: 600;">{estado}</p>
+        <p style="margin: 0.5rem 0 0 0; color: #718096; font-size: 0.8rem;">(Compartidos + Reposteados) / Vistas</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -220,9 +257,10 @@ with col2:
     st.markdown(f"""
     <div style="background: #f7fafc; padding: 1.5rem; border-radius: 1rem; text-align: center; border-left: 5px solid {'#38a169' if emoji in ['🟢','🚀'] else '#d69e2e' if emoji == '🟡' else '#e53e3e'};">
         <h1 style="margin: 0;">{emoji}</h1>
-        <h3 style="margin: 0.5rem 0;">Likes per Reach</h3>
-        <h2 style="margin: 0; color: #1a365d;">{likes_avg:.2f}%</h2>
-        <p style="margin: 0.5rem 0 0 0; color: #718096;">{estado}</p>
+        <h3 style="margin: 0.5rem 0; color: #1a365d; font-weight: 700;">❤️ Likes per Reach</h3>
+        <h2 style="margin: 0; color: #2d3748;">{likes_avg:.2f}%</h2>
+        <p style="margin: 0.5rem 0 0 0; color: #4a5568; font-weight: 600;">{estado}</p>
+        <p style="margin: 0.5rem 0 0 0; color: #718096; font-size: 0.8rem;">Likes / Vistas</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -231,9 +269,10 @@ with col3:
     st.markdown(f"""
     <div style="background: #f7fafc; padding: 1.5rem; border-radius: 1rem; text-align: center; border-left: 5px solid {'#38a169' if emoji in ['🟢','🚀'] else '#d69e2e' if emoji == '🟡' else '#e53e3e'};">
         <h1 style="margin: 0;">{emoji}</h1>
-        <h3 style="margin: 0.5rem 0;">Quality Score</h3>
-        <h2 style="margin: 0; color: #1a365d;">{qs_avg:.1f}/10</h2>
-        <p style="margin: 0.5rem 0 0 0; color: #718096;">{estado}</p>
+        <h3 style="margin: 0.5rem 0; color: #1a365d; font-weight: 700;">⭐ Quality Score</h3>
+        <h2 style="margin: 0; color: #2d3748;">{qs_avg:.1f}/10</h2>
+        <p style="margin: 0.5rem 0 0 0; color: #4a5568; font-weight: 600;">{estado}</p>
+        <p style="margin: 0.5rem 0 0 0; color: #718096; font-size: 0.8rem;">Índice combinado de engagement</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -537,9 +576,14 @@ with tab5:
 # ============================================
 st.divider()
 st.markdown("""
-<div style="text-align: center; color: #718096; padding: 1rem;">
-    <p>📊 Dashboard de Análisis de Redes Sociales</p>
-    <p>Basado en metodología de Adam Mosseri (CEO Instagram) - Enero 2025</p>
-    <p>Desarrollado con Streamlit + Plotly</p>
+<div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 1rem; margin-top: 1rem;">
+    <div style="margin-bottom: 1rem;">
+        <span style="font-size: 2rem; font-weight: 800; color: #1a1a1a; letter-spacing: 2px;">RYAN</span><br>
+        <span style="font-size: 2rem; font-weight: 800; color: #1a1a1a; letter-spacing: 2px;">DEIVIS</span>
+    </div>
+    <p style="margin: 0.5rem 0; color: #4a5568; font-size: 1rem;">Análisis y Dashboard desarrollado por <strong>Ryan Deivis</strong></p>
+    <p style="margin: 0.5rem 0; color: #718096; font-size: 0.9rem;">📊 Dashboard de Análisis de Redes Sociales</p>
+    <p style="margin: 0.5rem 0; color: #718096; font-size: 0.9rem;">Basado en metodología de Adam Mosseri (CEO Instagram) - Enero 2025</p>
+    <p style="margin: 1rem 0 0 0; color: #a0aec0; font-size: 0.8rem;">© 2026 - Desarrollado con Streamlit + Plotly</p>
 </div>
 """, unsafe_allow_html=True)

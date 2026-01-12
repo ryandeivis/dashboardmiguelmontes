@@ -575,12 +575,14 @@ with tab5:
 # FOOTER
 # ============================================
 st.divider()
+
+# Logo centrado
+col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
+with col_logo2:
+    st.image("logo_ryan.png", width=150)
+
 st.markdown("""
-<div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 1rem; margin-top: 1rem;">
-    <div style="margin-bottom: 1rem;">
-        <span style="font-size: 2rem; font-weight: 800; color: #1a1a1a; letter-spacing: 2px;">RYAN</span><br>
-        <span style="font-size: 2rem; font-weight: 800; color: #1a1a1a; letter-spacing: 2px;">DEIVIS</span>
-    </div>
+<div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 1rem; margin-top: 0.5rem;">
     <p style="margin: 0.5rem 0; color: #4a5568; font-size: 1rem;">Análisis y Dashboard desarrollado por <strong>Ryan Deivis</strong></p>
     <p style="margin: 0.5rem 0; color: #718096; font-size: 0.9rem;">📊 Dashboard de Análisis de Redes Sociales</p>
     <p style="margin: 0.5rem 0; color: #718096; font-size: 0.9rem;">Basado en metodología de Adam Mosseri (CEO Instagram) - Enero 2025</p>

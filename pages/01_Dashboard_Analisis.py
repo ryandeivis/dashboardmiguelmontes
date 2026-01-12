@@ -576,13 +576,14 @@ with tab5:
 # ============================================
 st.divider()
 
-# Logo centrado
-col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
-with col_logo2:
-    st.image("logo_ryan.png", width=150)
+# Cargar logo como base64 para incrustar en HTML
+import base64
+with open("logo_ryan.png", "rb") as img_file:
+    logo_base64 = base64.b64encode(img_file.read()).decode()
 
-st.markdown("""
-<div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 1rem; margin-top: 0.5rem;">
+st.markdown(f"""
+<div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 1rem; margin-top: 0.5rem;">
+    <img src="data:image/png;base64,{logo_base64}" style="width: 150px; margin-bottom: 1rem; display: block; margin-left: auto; margin-right: auto;">
     <p style="margin: 0.5rem 0; color: #4a5568; font-size: 1rem;">Análisis y Dashboard desarrollado por <strong>Ryan Deivis</strong></p>
     <p style="margin: 0.5rem 0; color: #718096; font-size: 0.9rem;">📊 Dashboard de Análisis de Redes Sociales</p>
     <p style="margin: 0.5rem 0; color: #718096; font-size: 0.9rem;">Basado en metodología de Adam Mosseri (CEO Instagram) - Enero 2025</p>

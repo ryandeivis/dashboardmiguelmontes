@@ -132,7 +132,6 @@ st.markdown('<p class="sub-header">Análisis histórico de rendimiento en redes 
 # SIDEBAR - INFORMACIÓN DEL PERFIL
 # ============================================
 with st.sidebar:
-    st.image("https://via.placeholder.com/150x150.png?text=@miguemontes1", width=150)
     st.markdown("### 👤 Perfil Analizado")
     st.markdown("**@miguemontes1**")
     st.markdown("Miguel A. Montes Curi")

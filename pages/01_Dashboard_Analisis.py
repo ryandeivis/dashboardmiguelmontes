@@ -258,13 +258,13 @@ with tab1:
     
     metrica_seleccionada = st.selectbox(
         "Selecciona la métrica:",
-        ["Reproducciones", "Likes", "Conteo Comentarios", "Compartidos", "Quality_Score"],
+        ["Reproducciones", "Likes", "Conteo Comentarios", "Compartidos", "Reposteados"],
         format_func=lambda x: {
             "Reproducciones": "👁️ Vistas",
             "Likes": "❤️ Likes",
             "Conteo Comentarios": "💬 Comentarios",
             "Compartidos": "🔄 Compartidos",
-            "Quality_Score": "⭐ Quality Score"
+            "Reposteados": "📤 Reposteados"
         }.get(x, x)
     )
     
@@ -276,16 +276,16 @@ with tab1:
         top_df['Fecha'] = pd.to_datetime(top_df['Fecha']).dt.strftime('%Y-%m-%d')
         top_df['Sends_per_Reach'] = top_df['Sends_per_Reach'].apply(lambda x: f"{x:.2f}%")
         top_df['Likes_per_Reach'] = top_df['Likes_per_Reach'].apply(lambda x: f"{x:.2f}%")
-        top_df['Quality_Score'] = top_df['Quality_Score'].apply(lambda x: f"{x:.1f}")
+        top_df['Quality_Score'] = top_df['Quality_Score'].fillna(0).apply(lambda x: f"{x:.1f}")
         st.dataframe(top_df, use_container_width=True, hide_index=True)
     
     with col2:
-        st.markdown("#### 📉 BOTTOM 10 - Peores")
+        st.markdown("#### 📉 TOP 10 - Peores")
         bottom_df = df.nsmallest(10, metrica_seleccionada)[['#', 'Fecha', metrica_seleccionada, 'Sends_per_Reach', 'Likes_per_Reach', 'Quality_Score']].copy()
         bottom_df['Fecha'] = pd.to_datetime(bottom_df['Fecha']).dt.strftime('%Y-%m-%d')
         bottom_df['Sends_per_Reach'] = bottom_df['Sends_per_Reach'].apply(lambda x: f"{x:.2f}%")
         bottom_df['Likes_per_Reach'] = bottom_df['Likes_per_Reach'].apply(lambda x: f"{x:.2f}%")
-        bottom_df['Quality_Score'] = bottom_df['Quality_Score'].apply(lambda x: f"{x:.1f}")
+        bottom_df['Quality_Score'] = bottom_df['Quality_Score'].fillna(0).apply(lambda x: f"{x:.1f}")
         st.dataframe(bottom_df, use_container_width=True, hide_index=True)
     
     # Gráfico de barras
@@ -356,12 +356,11 @@ with tab2:
         )
         
         fig = px.scatter(
-            df, 
-            x=scatter_metrica, 
+            df,
+            x=scatter_metrica,
             y='Reproducciones',
             color='Quality_Score',
             color_continuous_scale='RdYlGn',
-            trendline='ols',
             hover_data=['#', 'Fecha'],
             title=f'{scatter_metrica} vs Vistas'
         )
@@ -529,7 +528,7 @@ with tab5:
     df_mostrar['Fecha'] = pd.to_datetime(df_mostrar['Fecha']).dt.strftime('%Y-%m-%d')
     df_mostrar['Sends_per_Reach'] = df_mostrar['Sends_per_Reach'].apply(lambda x: f"{x:.2f}%")
     df_mostrar['Likes_per_Reach'] = df_mostrar['Likes_per_Reach'].apply(lambda x: f"{x:.2f}%")
-    df_mostrar['Quality_Score'] = df_mostrar['Quality_Score'].apply(lambda x: f"{x:.1f}")
+    df_mostrar['Quality_Score'] = df_mostrar['Quality_Score'].fillna(0).apply(lambda x: f"{x:.1f}")
     
     st.dataframe(df_mostrar, use_container_width=True, hide_index=True)
 
